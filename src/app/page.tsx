@@ -15,6 +15,7 @@ const LEVEL: Record<VerdictLevel, { bg: string; fg: string; dot: string }> = {
 };
 
 const FIXTURES = fixtures as Record<string, Verdict>;
+const THRESH = evalReport.thresholds; // { hit, escalate } — the calibrated cut-lines
 
 export default function Home() {
   const [text, setText] = useState("");
@@ -207,6 +208,9 @@ export default function Home() {
                                 className={`h-full ${LEVEL[c.level].bg}`}
                                 style={{ width: `${pct}%` }}
                               />
+                              {/* threshold cut-lines: below hit = novel/REVIEW, above escalate = strong */}
+                              <div className="absolute inset-y-0 w-0.5 bg-ink/70" style={{ left: `${THRESH.hit * 100}%` }} />
+                              <div className="absolute inset-y-0 w-0.5 bg-ink" style={{ left: `${THRESH.escalate * 100}%` }} />
                             </div>
                             <span className="font-mono text-sm font-bold tabular-nums">
                               {sim.toFixed(2)}
@@ -214,6 +218,11 @@ export default function Home() {
                             <span className="brutal-tag border-2 bg-white px-1.5 py-0 text-[10px]">
                               {ev.entry.label}
                             </span>
+                          </div>
+                          <div className="mt-1.5 flex gap-4 pl-[3.2rem] font-mono text-[10px] text-ink/45">
+                            <span>▏hit {THRESH.hit}</span>
+                            <span>▏escalate {THRESH.escalate}</span>
+                            <span className="text-ink/60">rule: closest is &ldquo;{ev.entry.label}&rdquo; {sim >= THRESH.escalate ? "(strong)" : sim >= THRESH.hit ? "(match)" : "(below hit → novel)"} → {c.level}</span>
                           </div>
                           <p className="mt-3 font-mono text-xs leading-relaxed text-ink/70">
                             <span className="font-bold text-ink">closest ▸ </span>

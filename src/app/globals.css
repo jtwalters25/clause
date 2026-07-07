@@ -7,5 +7,29 @@
 }
 
 body {
-  @apply bg-neutral-50 text-neutral-900 antialiased;
+  @apply bg-paper text-ink antialiased;
+  /* subtle grid — reads like an engineering canvas, not a marketing page */
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@layer components {
+  /* Hard-edged brutalist primitives */
+  .brutal-box {
+    @apply border-3 border-ink bg-white shadow-brutal;
+  }
+  .brutal-tag {
+    @apply inline-flex items-center border-3 border-ink px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-widest;
+  }
+}
+
+/* Chunky, honest scrollbars to match the aesthetic */
+textarea::-webkit-scrollbar {
+  width: 12px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #0a0a0a;
+  border: 3px solid #fff;
 }

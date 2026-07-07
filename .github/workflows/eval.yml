@@ -1,0 +1,26 @@
+name: eval-gate
+
+# Automated Canary Analysis as a merge gate. Runs entirely from the committed
+# canary-fixture.json (registry vectors + benchmark case embeddings) — no HF or
+# Supabase secrets — so a config/threshold change that regresses BLOCK recall or
+# accuracy, or churns too many verdicts, fails the build and blocks the PR.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Automated Canary Analysis
+        run: npm run canary

@@ -16,11 +16,12 @@ import type { EngineConfig, Thresholds, Verdict } from "@/engine/types";
 import { clauseSegmenter } from "./segmenter";
 import { clauseVerdictPolicy } from "./verdict";
 import { REGISTRY_VERSION } from "./playbook";
+import { BASELINE_THRESHOLDS } from "./thresholds";
 
 /** Baseline calibrated config. Thresholds are tuned by the eval harness. */
 export const baselineConfig: EngineConfig = {
   embedModel: process.env.EMBED_MODEL ?? "sentence-transformers/all-mpnet-base-v2",
-  thresholds: { hit: 0.55, escalate: 0.8 } as Thresholds,
+  thresholds: BASELINE_THRESHOLDS,
   registryVersion: REGISTRY_VERSION,
 };
 

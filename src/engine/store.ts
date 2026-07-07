@@ -69,3 +69,31 @@ export async function nearest(
     } as RegistryEntry,
   }));
 }
+
+/** pgvector columns come back over PostgREST as a JSON-array string; parse to number[]. */
+function parseVector(v: unknown): Vector {
+  if (Array.isArray(v)) return v as Vector;
+  if (typeof v === "string") return JSON.parse(v) as Vector;
+  return [];
+}
+
+/**
+ * Load the full registry for a version (content, label, meta, and the vector).
+ * Used by the fixture exporter so the canary can score offline — no per-query
+ * database round trips, no secrets in CI.
+ */
+export async function loadCorpus(registryVersion: string, db = admin()): Promise<RegistryEntry[]> {
+  const { data, error } = await db
+    .from("registry")
+    .select("id, content, embedding, label, meta, registry_version")
+    .eq("registry_version", registryVersion);
+  if (error) throw error;
+  return (data ?? []).map((row: any) => ({
+    id: row.id,
+    content: row.content,
+    vector: parseVector(row.embedding),
+    label: row.label,
+    meta: row.meta,
+    registryVersion: row.registry_version,
+  }));
+}

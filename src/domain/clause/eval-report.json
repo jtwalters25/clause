@@ -5,7 +5,7 @@
   "embedModel": "sentence-transformers/all-mpnet-base-v2",
   "thresholds": {
     "hit": 0.55,
-    "escalate": 0.8
+    "escalate": 0.9
   },
   "cases": 9,
   "classBreakdown": {
@@ -13,12 +13,14 @@
     "REVIEW": 3,
     "STANDARD": 3
   },
-  "accuracy": 1,
+  "accuracy": 0.8888888888888888,
   "blockPrecision": 1,
   "blockRecall": 1,
-  "churn": 0,
+  "churn": 0.1111111111111111,
   "gate": {
-    "pass": true,
-    "reasons": []
+    "pass": false,
+    "reasons": [
+      "accuracy regressed 11.1pp (> 2pp)"
+    ]
   }
 }

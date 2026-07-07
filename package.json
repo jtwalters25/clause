@@ -10,6 +10,7 @@
     "lint": "next lint",
     "seed": "tsx scripts/seed-playbook.ts",
     "fixtures": "tsx scripts/build-fixtures.ts",
+    "export-fixtures": "tsx scripts/export-fixtures.ts",
     "canary": "tsx scripts/canary.ts"
   },
   "dependencies": {

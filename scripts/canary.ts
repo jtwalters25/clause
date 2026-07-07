@@ -11,33 +11,67 @@
  *   npm run canary                        score current config, gate vs baseline
  *   CANDIDATE_HIT=0.9 npm run canary       score a perturbed candidate (demo a FAIL)
  *
- * Scoring embeds each benchmark case via HF, so this needs .env.local.
+ * Scores entirely in-memory from a committed fixture (matchInMemory + verdict
+ * policy) — no HF, no Supabase, no secrets — so it runs in CI. Refresh the
+ * fixture with `npm run export-fixtures` whenever playbook/benchmark/model change.
  */
-import { config as loadEnv } from "dotenv";
-loadEnv({ path: ".env.local" });
-
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { evaluate, analyzeCanary, type ScoreFn } from "@/engine/eval/canary";
 import type { EvalReport } from "@/engine/eval/types";
-import type { EngineConfig } from "@/engine/types";
-import { analyze, baselineConfig } from "@/domain/clause/pipeline";
+import type { EngineConfig, RegistryEntry, Thresholds, VerdictLevel } from "@/engine/types";
+import { matchInMemory } from "@/engine/match";
+import { scoreDocument } from "@/engine/score";
+import { clauseVerdictPolicy } from "@/domain/clause/verdict";
+import { BASELINE_THRESHOLDS } from "@/domain/clause/thresholds";
+import { REGISTRY_VERSION } from "@/domain/clause/playbook";
 import { BENCHMARK } from "@/domain/clause/benchmark";
 
 const BASELINE_PATH = join(process.cwd(), "src/domain/clause/canary-baseline.json");
 const EVAL_REPORT_PATH = join(process.cwd(), "src/domain/clause/eval-report.json");
+const FIXTURE_PATH = join(process.cwd(), "src/domain/clause/canary-fixture.json");
 
-/** Domain ScoreFn: run the real pipeline, return the document verdict. */
+interface CanaryFixture {
+  registry: RegistryEntry[];
+  cases: { id: string; text: string; expected: VerdictLevel; vector: number[] }[];
+}
+
+function loadFixture(): CanaryFixture {
+  try {
+    return JSON.parse(readFileSync(FIXTURE_PATH, "utf8")) as CanaryFixture;
+  } catch {
+    console.error("no canary-fixture.json — run `npm run export-fixtures` first.");
+    process.exit(1);
+  }
+}
+
+const FIXTURE = loadFixture();
+const VEC_BY_TEXT = new Map(FIXTURE.cases.map((c) => [c.text, c.vector]));
+
+const baselineConfig: EngineConfig = {
+  embedModel: process.env.EMBED_MODEL ?? "sentence-transformers/all-mpnet-base-v2",
+  thresholds: BASELINE_THRESHOLDS,
+  registryVersion: REGISTRY_VERSION,
+};
+
+/**
+ * Offline ScoreFn — reproduces analyze() for a single-clause case using the
+ * precomputed case vector + registry: matchInMemory → verdict policy. Pure.
+ */
 const score: ScoreFn = async (text, cfg) => {
-  const verdict = await analyze(text, cfg);
+  const vector = VEC_BY_TEXT.get(text);
+  if (!vector) throw new Error(`no fixture vector for case text (stale fixture?)`);
+  const matches = matchInMemory([{ index: 0, content: text, vector, hash: "" }], FIXTURE.registry, 5);
+  const verdict = scoreDocument("case", matches, clauseVerdictPolicy, cfg.thresholds, "offline");
   return { actual: verdict.level, matches: [] };
 };
 
 /** Candidate config = baseline, optionally perturbed via env to demonstrate a FAIL. */
 function candidateConfig(): EngineConfig {
-  const hit = process.env.CANDIDATE_HIT ? Number(process.env.CANDIDATE_HIT) : baselineConfig.thresholds.hit;
-  const escalate = process.env.CANDIDATE_ESCALATE ? Number(process.env.CANDIDATE_ESCALATE) : baselineConfig.thresholds.escalate;
-  return { ...baselineConfig, thresholds: { ...baselineConfig.thresholds, hit, escalate } };
+  const t = baselineConfig.thresholds;
+  const hit = process.env.CANDIDATE_HIT ? Number(process.env.CANDIDATE_HIT) : t.hit;
+  const escalate = process.env.CANDIDATE_ESCALATE ? Number(process.env.CANDIDATE_ESCALATE) : t.escalate;
+  return { ...baselineConfig, thresholds: { ...t, hit, escalate } as Thresholds };
 }
 
 function summarize(label: string, r: EvalReport, detail = false) {

@@ -8,7 +8,8 @@
  *
  * Requires the registry to be seeded first (npm run seed).
  */
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
 import { writeFileSync } from "fs";
 import { join } from "path";
 import { analyze } from "@/domain/clause/pipeline";

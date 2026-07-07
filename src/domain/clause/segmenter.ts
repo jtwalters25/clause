@@ -8,8 +8,11 @@
  */
 import type { Chunk, Document, Segmenter } from "@/engine/types";
 
-// Start-of-clause markers: "1.", "1.2.3", "(a)", "Section 5", "ARTICLE II"
-const MARKER = /^\s*((?:\d+\.)+\d*|\([a-z0-9]+\)|Section\s+\d+|ARTICLE\s+[IVX\d]+)\b[.)]?\s+/i;
+// Start-of-clause markers: "1.", "1.2.3", "(a)", "Section 5", "ARTICLE II".
+// No trailing \b — "1." followed by a space has no word boundary there, which
+// silently collapsed every numbered clause into one chunk. Optional [.)] then
+// required whitespace separates the marker from the clause body.
+const MARKER = /^\s*((?:\d+\.)+\d*|\([a-z0-9]+\)|Section\s+\d+|ARTICLE\s+[IVX\d]+)[.)]?\s+/i;
 
 export const clauseSegmenter: Segmenter = (doc: Document): Chunk[] => {
   const lines = doc.text.split("\n");

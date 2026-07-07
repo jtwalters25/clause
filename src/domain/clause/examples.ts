@@ -34,11 +34,11 @@ export const EXAMPLES: Example[] = [
     id: "services-review",
     title: "Professional services addendum",
     expected: "REVIEW",
-    text: `1. Scope. Provider will deliver the professional services described in each Statement of Work.
+    text: `1. Governing Law. This Agreement is governed by the laws of the State of New York, and the parties submit to the exclusive jurisdiction of the courts located in New York County.
 
-2. Indemnification. Customer shall defend, indemnify, and hold harmless Provider from any and all claims arising from Customer's use of the services, regardless of cause and including Provider's own negligence.
+2. Notices. All notices under this Agreement shall be in writing and delivered by email with confirmation of receipt to the addresses on the cover page.
 
-3. Payment. Invoices are due net thirty (30) days.`,
+3. Assignment. Neither party may assign this Agreement without the other party's prior written consent, which shall not be unreasonably withheld or delayed.`,
   },
   {
     id: "balanced-standard",

@@ -1,1 +1,513 @@
-{}
+{
+  "vendor-saas-risky": {
+    "documentId": "55355987-b26e-4223-b141-34155641c9eb",
+    "level": "BLOCK",
+    "chunks": [
+      {
+        "queryIndex": 0,
+        "level": "REVIEW",
+        "evidence": [
+          {
+            "similarity": 0.541448918494648,
+            "entry": {
+              "id": "termination-convenience-approved",
+              "content": "Either party may terminate this Agreement for convenience upon thirty (30) days' prior written notice, with a pro-rata refund of any prepaid, unused fees.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          },
+          {
+            "similarity": 0.46364176490058,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          },
+          {
+            "similarity": 0.335207035088331,
+            "entry": {
+              "id": "auto-renew-risky",
+              "content": "This Agreement shall automatically renew for successive twelve-month terms unless either party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current term.",
+              "vector": [],
+              "label": "risky",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          }
+        ],
+        "rationale": "No playbook clause within 0.55 cosine (best 0.54) — novel wording."
+      },
+      {
+        "queryIndex": 1,
+        "level": "BLOCK",
+        "evidence": [
+          {
+            "similarity": 0.917129186306274,
+            "entry": {
+              "id": "liability-uncapped-prohibited",
+              "content": "The Provider shall be liable for any and all damages of any kind arising out of or related to this Agreement without limitation, including indirect, incidental, and consequential damages.",
+              "vector": [],
+              "label": "prohibited",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          },
+          {
+            "similarity": 0.697824141318326,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          },
+          {
+            "similarity": 0.68679986337424,
+            "entry": {
+              "id": "indemnity-one-sided-risky",
+              "content": "Customer shall defend, indemnify, and hold harmless Provider from any and all claims arising from Customer's use of the services, regardless of cause and including Provider's own negligence.",
+              "vector": [],
+              "label": "risky",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          }
+        ],
+        "rationale": "Closest playbook clause is \"prohibited\" at 0.92 cosine (strong)."
+      },
+      {
+        "queryIndex": 2,
+        "level": "BLOCK",
+        "evidence": [
+          {
+            "similarity": 0.958591494686183,
+            "entry": {
+              "id": "auto-renew-risky",
+              "content": "This Agreement shall automatically renew for successive twelve-month terms unless either party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current term.",
+              "vector": [],
+              "label": "risky",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          },
+          {
+            "similarity": 0.528793987179523,
+            "entry": {
+              "id": "termination-convenience-approved",
+              "content": "Either party may terminate this Agreement for convenience upon thirty (30) days' prior written notice, with a pro-rata refund of any prepaid, unused fees.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          },
+          {
+            "similarity": 0.434754141002403,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          }
+        ],
+        "rationale": "Closest playbook clause is \"risky\" at 0.96 cosine (strong)."
+      },
+      {
+        "queryIndex": 3,
+        "level": "REVIEW",
+        "evidence": [
+          {
+            "similarity": 0.872694637557705,
+            "entry": {
+              "id": "governing-law-neutral-acceptable",
+              "content": "This Agreement shall be governed by the laws of the State of Delaware, without regard to its conflict of laws principles, and the parties consent to the exclusive jurisdiction of the state and federal courts located therein.",
+              "vector": [],
+              "label": "acceptable",
+              "meta": {
+                "category": "Governing Law"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 3
+          },
+          {
+            "similarity": 0.500024944545325,
+            "entry": {
+              "id": "indemnity-mutual-approved",
+              "content": "Each party shall indemnify and hold harmless the other from third-party claims arising from the indemnifying party's gross negligence or willful misconduct, subject to prompt notice and control of the defense.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 3
+          },
+          {
+            "similarity": 0.41315190235233,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 3
+          }
+        ],
+        "rationale": "Closest playbook clause is \"acceptable\" at 0.87 cosine (strong)."
+      }
+    ],
+    "configId": "a56e5fcf2be1f230"
+  },
+  "services-review": {
+    "documentId": "5b1c87a4-eaf7-4194-bacf-d37f2d64b46b",
+    "level": "REVIEW",
+    "chunks": [
+      {
+        "queryIndex": 0,
+        "level": "REVIEW",
+        "evidence": [
+          {
+            "similarity": 0.575711096780832,
+            "entry": {
+              "id": "governing-law-neutral-acceptable",
+              "content": "This Agreement shall be governed by the laws of the State of Delaware, without regard to its conflict of laws principles, and the parties consent to the exclusive jurisdiction of the state and federal courts located therein.",
+              "vector": [],
+              "label": "acceptable",
+              "meta": {
+                "category": "Governing Law"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          },
+          {
+            "similarity": 0.3610644828956,
+            "entry": {
+              "id": "indemnity-mutual-approved",
+              "content": "Each party shall indemnify and hold harmless the other from third-party claims arising from the indemnifying party's gross negligence or willful misconduct, subject to prompt notice and control of the defense.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          },
+          {
+            "similarity": 0.339941213134455,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          }
+        ],
+        "rationale": "Closest playbook clause is \"acceptable\" at 0.58 cosine."
+      },
+      {
+        "queryIndex": 1,
+        "level": "REVIEW",
+        "evidence": [
+          {
+            "similarity": 0.415379906617398,
+            "entry": {
+              "id": "auto-renew-risky",
+              "content": "This Agreement shall automatically renew for successive twelve-month terms unless either party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current term.",
+              "vector": [],
+              "label": "risky",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          },
+          {
+            "similarity": 0.398261660233835,
+            "entry": {
+              "id": "indemnity-mutual-approved",
+              "content": "Each party shall indemnify and hold harmless the other from third-party claims arising from the indemnifying party's gross negligence or willful misconduct, subject to prompt notice and control of the defense.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          },
+          {
+            "similarity": 0.394216161793952,
+            "entry": {
+              "id": "governing-law-neutral-acceptable",
+              "content": "This Agreement shall be governed by the laws of the State of Delaware, without regard to its conflict of laws principles, and the parties consent to the exclusive jurisdiction of the state and federal courts located therein.",
+              "vector": [],
+              "label": "acceptable",
+              "meta": {
+                "category": "Governing Law"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          }
+        ],
+        "rationale": "No playbook clause within 0.55 cosine (best 0.42) — novel wording."
+      },
+      {
+        "queryIndex": 2,
+        "level": "REVIEW",
+        "evidence": [
+          {
+            "similarity": 0.612059015395016,
+            "entry": {
+              "id": "governing-law-neutral-acceptable",
+              "content": "This Agreement shall be governed by the laws of the State of Delaware, without regard to its conflict of laws principles, and the parties consent to the exclusive jurisdiction of the state and federal courts located therein.",
+              "vector": [],
+              "label": "acceptable",
+              "meta": {
+                "category": "Governing Law"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          },
+          {
+            "similarity": 0.525099368399344,
+            "entry": {
+              "id": "indemnity-mutual-approved",
+              "content": "Each party shall indemnify and hold harmless the other from third-party claims arising from the indemnifying party's gross negligence or willful misconduct, subject to prompt notice and control of the defense.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          },
+          {
+            "similarity": 0.483769669645121,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          }
+        ],
+        "rationale": "Closest playbook clause is \"acceptable\" at 0.61 cosine."
+      }
+    ],
+    "configId": "a56e5fcf2be1f230"
+  },
+  "balanced-standard": {
+    "documentId": "f978a574-4f53-4f8d-ac16-412a13648228",
+    "level": "STANDARD",
+    "chunks": [
+      {
+        "queryIndex": 0,
+        "level": "STANDARD",
+        "evidence": [
+          {
+            "similarity": 0.911996245384216,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          },
+          {
+            "similarity": 0.651971220970154,
+            "entry": {
+              "id": "liability-uncapped-prohibited",
+              "content": "The Provider shall be liable for any and all damages of any kind arising out of or related to this Agreement without limitation, including indirect, incidental, and consequential damages.",
+              "vector": [],
+              "label": "prohibited",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          },
+          {
+            "similarity": 0.606248277611979,
+            "entry": {
+              "id": "indemnity-mutual-approved",
+              "content": "Each party shall indemnify and hold harmless the other from third-party claims arising from the indemnifying party's gross negligence or willful misconduct, subject to prompt notice and control of the defense.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 0
+          }
+        ],
+        "rationale": "Closest playbook clause is \"approved\" at 0.91 cosine (strong)."
+      },
+      {
+        "queryIndex": 1,
+        "level": "STANDARD",
+        "evidence": [
+          {
+            "similarity": 0.903968849423343,
+            "entry": {
+              "id": "indemnity-mutual-approved",
+              "content": "Each party shall indemnify and hold harmless the other from third-party claims arising from the indemnifying party's gross negligence or willful misconduct, subject to prompt notice and control of the defense.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          },
+          {
+            "similarity": 0.660500646740084,
+            "entry": {
+              "id": "indemnity-one-sided-risky",
+              "content": "Customer shall defend, indemnify, and hold harmless Provider from any and all claims arising from Customer's use of the services, regardless of cause and including Provider's own negligence.",
+              "vector": [],
+              "label": "risky",
+              "meta": {
+                "category": "Indemnification"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          },
+          {
+            "similarity": 0.546125942930471,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 1
+          }
+        ],
+        "rationale": "Closest playbook clause is \"approved\" at 0.90 cosine (strong)."
+      },
+      {
+        "queryIndex": 2,
+        "level": "STANDARD",
+        "evidence": [
+          {
+            "similarity": 0.962612180787688,
+            "entry": {
+              "id": "termination-convenience-approved",
+              "content": "Either party may terminate this Agreement for convenience upon thirty (30) days' prior written notice, with a pro-rata refund of any prepaid, unused fees.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          },
+          {
+            "similarity": 0.531575711463434,
+            "entry": {
+              "id": "auto-renew-risky",
+              "content": "This Agreement shall automatically renew for successive twelve-month terms unless either party provides written notice of non-renewal at least ninety (90) days prior to the end of the then-current term.",
+              "vector": [],
+              "label": "risky",
+              "meta": {
+                "category": "Term & Termination"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          },
+          {
+            "similarity": 0.481911375579577,
+            "entry": {
+              "id": "liability-cap-approved",
+              "content": "Except for breaches of confidentiality or indemnification obligations, each party's total aggregate liability under this Agreement shall not exceed the fees paid or payable in the twelve (12) months preceding the claim.",
+              "vector": [],
+              "label": "approved",
+              "meta": {
+                "category": "Limitation of Liability"
+              },
+              "registryVersion": "playbook-2026-07-06"
+            },
+            "queryIndex": 2
+          }
+        ],
+        "rationale": "Closest playbook clause is \"approved\" at 0.96 cosine (strong)."
+      }
+    ],
+    "configId": "a56e5fcf2be1f230"
+  }
+}

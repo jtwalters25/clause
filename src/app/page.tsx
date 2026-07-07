@@ -6,6 +6,7 @@ import type { Verdict, VerdictLevel } from "@/engine/types";
 import { EXAMPLES } from "@/domain/clause/examples";
 import fixtures from "@/domain/clause/fixtures.json";
 import evalReport from "@/domain/clause/eval-report.json";
+import { HowItWorks } from "@/components/how-it-works";
 
 /** Verdict → brutalist swatch. Severity semantics: mint=safe, acid=caution, magenta=danger. */
 const LEVEL: Record<VerdictLevel, { bg: string; fg: string; dot: string }> = {
@@ -239,6 +240,8 @@ export default function Home() {
           </ul>
         </section>
       )}
+
+      <HowItWorks />
 
       <footer className="mt-16 border-t-3 border-ink pt-4 font-mono text-xs text-ink/50">
         similarity engine · pgvector HNSW · calibrated thresholds · kayenta-style canary gate

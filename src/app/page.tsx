@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import type { Verdict, VerdictLevel } from "@/engine/types";
+import { EXAMPLES } from "@/domain/clause/examples";
+import fixtures from "@/domain/clause/fixtures.json";
 
 const LEVEL_STYLE: Record<VerdictLevel, string> = {
   STANDARD: "bg-teal-100 text-teal-800 border-teal-300",
@@ -9,13 +11,30 @@ const LEVEL_STYLE: Record<VerdictLevel, string> = {
   BLOCK: "bg-red-100 text-red-800 border-red-300",
 };
 
+const FIXTURES = fixtures as Record<string, Verdict>;
+
 export default function Home() {
   const [text, setText] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function run() {
+  /** Load an example: serve its precomputed fixture instantly if present,
+   *  otherwise fall back to running it live. */
+  function loadExample(id: string) {
+    const ex = EXAMPLES.find((e) => e.id === id);
+    if (!ex) return;
+    setText(ex.text);
+    setError(null);
+    if (FIXTURES[id]) {
+      setVerdict(FIXTURES[id]); // instant, no API call
+    } else {
+      setVerdict(null);
+      run(ex.text);
+    }
+  }
+
+  async function run(input = text) {
     setLoading(true);
     setError(null);
     setVerdict(null);
@@ -23,7 +42,7 @@ export default function Home() {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text: input }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "failed");
@@ -45,15 +64,28 @@ export default function Home() {
         <span className="font-medium text-red-700">BLOCK</span> — with the closest known clause as evidence.
       </p>
 
+      <div className="mt-6 flex flex-wrap items-center gap-2">
+        <span className="text-sm text-neutral-500">Try an example:</span>
+        {EXAMPLES.map((ex) => (
+          <button
+            key={ex.id}
+            onClick={() => loadExample(ex.id)}
+            className="rounded-full border border-neutral-300 bg-white px-3 py-1 text-sm text-neutral-700 hover:border-teal-400 hover:text-teal-700"
+          >
+            {ex.title}
+          </button>
+        ))}
+      </div>
+
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Paste contract text… clauses are detected by their numbering (1., 1.2, (a), Section 3…)."
-        className="mt-6 h-64 w-full rounded-lg border border-neutral-300 p-4 font-mono text-sm focus:border-teal-500 focus:outline-none"
+        placeholder="…or paste your own contract. Clauses are detected by their numbering (1., 1.2, (a), Section 3…)."
+        className="mt-3 h-64 w-full rounded-lg border border-neutral-300 p-4 font-mono text-sm focus:border-teal-500 focus:outline-none"
       />
 
       <button
-        onClick={run}
+        onClick={() => run()}
         disabled={loading || text.trim().length < 20}
         className="mt-4 rounded-lg bg-teal-600 px-5 py-2.5 font-medium text-white disabled:opacity-40"
       >

@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx scripts/seed-playbook.ts",
+    "fixtures": "tsx scripts/build-fixtures.ts",
     "canary": "tsx src/engine/eval/canary.ts"
   },
   "dependencies": {
@@ -16,6 +17,8 @@
     "@huggingface/inference": "^4.13.15",
     "@supabase/ssr": "^0.5.0",
     "@supabase/supabase-js": "^2.45.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

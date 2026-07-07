@@ -36,9 +36,9 @@ async function withRetry<T>(fn: () => Promise<T>, tries = 3): Promise<T> {
   throw lastErr;
 }
 
-/** Embed already-sealed chunks. Preserves order; batches to respect rate limits. */
+/** Embed (optionally pre-sealed) chunks. Preserves order; batches to respect rate limits. */
 export async function embedChunks(
-  chunks: Chunk[],
+  chunks: Array<Chunk & { hash?: string }>,
   model = process.env.EMBED_MODEL ?? "sentence-transformers/all-mpnet-base-v2",
 ): Promise<EmbeddedChunk[]> {
   const hf = client();

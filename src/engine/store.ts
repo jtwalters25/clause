@@ -6,14 +6,26 @@
  * match_entries). Keeping the ANN query server-side is the same pattern used in
  * Provenance's match_provenance().
  */
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 import type { Match, RegistryEntry, Vector } from "./types";
 
-export function admin(): SupabaseClient {
+/**
+ * Service-role client scoped to the `clause` schema. Clause shares a Supabase
+ * project with other apps (Provenance) but is namespaced into its own schema, so
+ * `.from("registry")` / `.rpc("match_entries")` resolve to clause.* and can never
+ * touch another app's tables. Schema must be listed under Settings → API →
+ * Exposed schemas (see schema.sql).
+ */
+const SCHEMA = process.env.SUPABASE_SCHEMA ?? "clause";
+
+export function admin() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error("Supabase env not set");
-  return createClient(url, key, { auth: { persistSession: false } });
+  return createClient(url, key, {
+    auth: { persistSession: false },
+    db: { schema: SCHEMA },
+  });
 }
 
 /** Upsert registry entries (playbook clauses / resolved tickets). */

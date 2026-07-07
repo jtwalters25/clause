@@ -43,7 +43,7 @@ expressions, sharing `engine/eval/types.ts`.
 - [ ] 2. `npm run seed` populates the playbook registry in Supabase
 - [ ] 3. UI: paste contract → per-clause verdict list with evidence  *(scaffolded)*
 - [ ] 4. LLM redline per REVIEW/BLOCK clause (Anthropic) + SHA-256 audit seal surfaced
-- [ ] 5. Canary: build the labeled benchmark set + wire the CI gate
+- [x] 5. Canary: labeled benchmark (paraphrased) + wired gate (`npm run canary`), PASS/FAIL proven
 - [ ] 6. Calibration pass: tune thresholds against the benchmark, record the baseline
 
 ## Scope discipline (lesson from Provenance-as-portfolio)

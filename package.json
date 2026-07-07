@@ -10,7 +10,7 @@
     "lint": "next lint",
     "seed": "tsx scripts/seed-playbook.ts",
     "fixtures": "tsx scripts/build-fixtures.ts",
-    "canary": "tsx src/engine/eval/canary.ts"
+    "canary": "tsx scripts/canary.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

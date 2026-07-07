@@ -92,18 +92,7 @@ export function analyzeCanary(baseline: EvalReport, candidate: EvalReport): Cana
 }
 
 /**
- * CLI entry: `npm run canary`.
- * Wires the domain's ScoreFn + Benchmark, evaluates baseline & candidate,
- * prints the gate, and exits non-zero on FAIL so CI blocks the merge.
- *
- * TODO(clause): import { scoreFn, baselineConfig, candidateConfig, benchmark }
- * from ../../domain/clause and run the four lines below.
+ * The wired CLI lives in scripts/canary.ts (it supplies the domain ScoreFn +
+ * benchmark and compares the current config against a committed baseline). This
+ * module stays pure so it can run in CI without domain or database imports.
  */
-async function main() {
-  console.log("canary: wire domain ScoreFn + benchmark, then evaluate() ×2 → analyzeCanary().");
-  console.log("On FAIL, process.exit(1) so CI blocks the config change.");
-}
-
-if (process.argv[1] && process.argv[1].endsWith("canary.ts")) {
-  main();
-}

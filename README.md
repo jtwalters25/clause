@@ -22,6 +22,18 @@ Any change to the embedding model or scoring thresholds is gated by a Kayenta-st
 (`npm run canary`): a candidate config must not regress BLOCK recall or accuracy beyond
 tolerance, and must keep verdict churn low — otherwise the gate fails and CI blocks the merge.
 
+The current config scores **accuracy 1.00 · BLOCK recall 1.00** over a 9-case labeled
+benchmark of *paraphrased* clauses (a verbatim benchmark self-matches at 1.0 and can't detect
+regressions). The gate is demonstrably sensitive — e.g. nudging the escalation threshold
+`0.8 → 0.9` drops accuracy to 0.89 (11% verdict churn) and the canary fails:
+
+```
+$ npm run canary                     # no change  → PASS ✓ (churn 0%)
+$ CANDIDATE_ESCALATE=0.9 npm run canary   # regression → FAIL ✗ (accuracy −11pp)
+```
+
+Snapshot a new baseline with `npm run canary -- --save-baseline`.
+
 ## Tech
 
 | Layer | Technology |

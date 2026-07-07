@@ -1,0 +1,70 @@
+{
+  "config": {
+    "embedModel": "sentence-transformers/all-mpnet-base-v2",
+    "thresholds": {
+      "hit": 0.55,
+      "escalate": 0.8
+    },
+    "registryVersion": "playbook-2026-07-06"
+  },
+  "n": 9,
+  "accuracy": 1,
+  "blockPrecision": 1,
+  "blockRecall": 1,
+  "results": [
+    {
+      "id": "b-uncapped-liability",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "correct": true
+    },
+    {
+      "id": "b-broad-ip-assignment",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "correct": true
+    },
+    {
+      "id": "b-one-sided-indemnity",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "correct": true
+    },
+    {
+      "id": "r-governing-law",
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "correct": true
+    },
+    {
+      "id": "r-notices",
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "correct": true
+    },
+    {
+      "id": "r-assignment-consent",
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "correct": true
+    },
+    {
+      "id": "s-liability-cap",
+      "expected": "STANDARD",
+      "actual": "STANDARD",
+      "correct": true
+    },
+    {
+      "id": "s-mutual-indemnity",
+      "expected": "STANDARD",
+      "actual": "STANDARD",
+      "correct": true
+    },
+    {
+      "id": "s-termination-convenience",
+      "expected": "STANDARD",
+      "actual": "STANDARD",
+      "correct": true
+    }
+  ]
+}

@@ -25,6 +25,7 @@ import { analyze, baselineConfig } from "@/domain/clause/pipeline";
 import { BENCHMARK } from "@/domain/clause/benchmark";
 
 const BASELINE_PATH = join(process.cwd(), "src/domain/clause/canary-baseline.json");
+const EVAL_REPORT_PATH = join(process.cwd(), "src/domain/clause/eval-report.json");
 
 /** Domain ScoreFn: run the real pipeline, return the document verdict. */
 const score: ScoreFn = async (text, cfg) => {
@@ -74,6 +75,31 @@ async function main() {
   summarize("candidate", candidate);
 
   const verdict = analyzeCanary(baseline, candidate);
+
+  // Panel-facing report — committed and rendered at /eval (no HF call on page load).
+  const byLevel = (lvl: string) => candidate.results.filter((r) => r.expected === lvl).length;
+  writeFileSync(
+    EVAL_REPORT_PATH,
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString().slice(0, 10),
+        benchmarkVersion: BENCHMARK.version,
+        registryVersion: candidate.config.registryVersion,
+        embedModel: candidate.config.embedModel,
+        thresholds: candidate.config.thresholds,
+        cases: candidate.n,
+        classBreakdown: { BLOCK: byLevel("BLOCK"), REVIEW: byLevel("REVIEW"), STANDARD: byLevel("STANDARD") },
+        accuracy: candidate.accuracy,
+        blockPrecision: candidate.blockPrecision,
+        blockRecall: candidate.blockRecall,
+        churn: verdict.churn,
+        gate: { pass: verdict.pass, reasons: verdict.reasons },
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+
   console.log(`\nverdict churn: ${(verdict.churn * 100).toFixed(0)}%`);
   if (verdict.pass) {
     console.log("\ncanary: PASS ✓  — safe to ship this config change.");

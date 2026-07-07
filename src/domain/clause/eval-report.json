@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-07-07",
+  "benchmarkVersion": "bench-2026-07-06",
+  "registryVersion": "playbook-2026-07-06",
+  "embedModel": "sentence-transformers/all-mpnet-base-v2",
+  "thresholds": {
+    "hit": 0.55,
+    "escalate": 0.8
+  },
+  "cases": 9,
+  "classBreakdown": {
+    "BLOCK": 3,
+    "REVIEW": 3,
+    "STANDARD": 3
+  },
+  "accuracy": 1,
+  "blockPrecision": 1,
+  "blockRecall": 1,
+  "churn": 0,
+  "gate": {
+    "pass": true,
+    "reasons": []
+  }
+}

@@ -1,9 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import type { Verdict, VerdictLevel } from "@/engine/types";
 import { EXAMPLES } from "@/domain/clause/examples";
 import fixtures from "@/domain/clause/fixtures.json";
+import evalReport from "@/domain/clause/eval-report.json";
 
 /** Verdict → brutalist swatch. Severity semantics: mint=safe, acid=caution, magenta=danger. */
 const LEVEL: Record<VerdictLevel, { bg: string; fg: string; dot: string }> = {
@@ -80,6 +82,20 @@ export default function Home() {
           — with the closest known clause as evidence.
         </p>
       </header>
+
+      {/* ── Model-quality strip — the canary story, on screen ── */}
+      <Link
+        href="/eval"
+        className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 border-3 border-ink bg-white px-4 py-2 font-mono text-sm shadow-brutal-sm transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal"
+      >
+        <span className="font-bold uppercase tracking-widest text-ink/70">Model quality</span>
+        <span>accuracy <b className="tabular-nums">{evalReport.accuracy.toFixed(2)}</b></span>
+        <span>BLOCK recall <b className="tabular-nums">{evalReport.blockRecall.toFixed(2)}</b></span>
+        <span className={`px-1.5 ${evalReport.gate.pass ? "bg-mint" : "bg-magenta text-white"}`}>
+          canary {evalReport.gate.pass ? "PASS" : "FAIL"}
+        </span>
+        <span className="ml-auto text-violet">gated before ship →</span>
+      </Link>
 
       {/* ── Examples ─────────────────────────────────────────── */}
       <div className="mt-8 flex flex-wrap items-center gap-3">

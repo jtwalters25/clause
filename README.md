@@ -1,5 +1,7 @@
 # Clause
 
+[![eval-gate](https://github.com/jtwalters25/clause/actions/workflows/eval.yml/badge.svg)](https://github.com/jtwalters25/clause/actions/workflows/eval.yml)
+
 **Contract clause intelligence.** Paste a contract; Clause segments it into individual
 clauses, matches each against your playbook of known-good / known-bad wording, and returns
 a calibrated **STANDARD / REVIEW / BLOCK** verdict — with the closest known clause as evidence.

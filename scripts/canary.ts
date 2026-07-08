@@ -110,8 +110,12 @@ async function main() {
 
   const verdict = analyzeCanary(baseline, candidate);
 
-  // Panel-facing report — committed and rendered at /eval (no HF call on page load).
+  // Panel-facing report — committed and rendered at /eval. Only refresh it for a
+  // real evaluation of the shipped config; a perturbed demo run (CANDIDATE_* set)
+  // must NOT overwrite the committed baseline numbers.
+  const isDemo = !!(process.env.CANDIDATE_HIT || process.env.CANDIDATE_ESCALATE);
   const byLevel = (lvl: string) => candidate.results.filter((r) => r.expected === lvl).length;
+  if (!isDemo)
   writeFileSync(
     EVAL_REPORT_PATH,
     JSON.stringify(

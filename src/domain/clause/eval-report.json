@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-07",
+  "generatedAt": "2026-07-08",
   "benchmarkVersion": "bench-2026-07-06",
   "registryVersion": "playbook-2026-07-06",
   "embedModel": "sentence-transformers/all-mpnet-base-v2",
   "thresholds": {
     "hit": 0.55,
-    "escalate": 0.9
+    "escalate": 0.8
   },
   "cases": 9,
   "classBreakdown": {
@@ -13,14 +13,12 @@
     "REVIEW": 3,
     "STANDARD": 3
   },
-  "accuracy": 0.8888888888888888,
+  "accuracy": 1,
   "blockPrecision": 1,
   "blockRecall": 1,
-  "churn": 0.1111111111111111,
+  "churn": 0,
   "gate": {
-    "pass": false,
-    "reasons": [
-      "accuracy regressed 11.1pp (> 2pp)"
-    ]
+    "pass": true,
+    "reasons": []
   }
 }

@@ -58,5 +58,15 @@ npm run dev                  # http://localhost:3000
 
 ## Status
 
-Scaffold stage — engine boundary, Clause seams, pipeline, API, and UI are in place.
-Build order tracked in [`PLAN.md`](./PLAN.md).
+Working end-to-end: the engine spine, the three Clause seams, the `analyze()`
+pipeline, the API route, and the UI are wired and typecheck clean — and the
+CI-gating evaluation is live. Every push runs an offline Automated Canary
+Analysis ([eval.yml](.github/workflows/eval.yml)) that exits non-zero on a
+config regression and blocks the merge; the current config scores accuracy 1.00
+· BLOCK recall 1.00.
+
+The deliberate limitation is corpus size, not completeness: the benchmark is a
+hand-labeled **n=9** set of paraphrased clauses. So the artifact here is the
+*harness* — the calibrated pipeline plus a sensitive, reproducible regression
+gate — rather than a production-scale model. Scaling the corpus and playbook is
+the next step; build order is tracked in [`PLAN.md`](./PLAN.md).

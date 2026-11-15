@@ -7,7 +7,7 @@ clauses, matches each against your playbook of known-good / known-bad wording, a
 a calibrated **STANDARD / REVIEW / BLOCK** verdict — with the closest known clause as evidence.
 
 Built on a domain-agnostic similarity engine (`src/engine/`) that also powers a sibling
-project, [Echo](../echo). See [`PLAN.md`](./PLAN.md) for the architecture and roadmap.
+project, [Echo](https://github.com/jtwalters25/echo). See [`PLAN.md`](./PLAN.md) for the architecture and roadmap.
 
 ## How it works
 
